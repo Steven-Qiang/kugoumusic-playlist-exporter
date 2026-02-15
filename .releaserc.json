@@ -1,5 +1,7 @@
 {
-  "branches": ["main"],
+  "branches": [
+    "main"
+  ],
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
@@ -11,24 +13,26 @@
       }
     ],
     [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "pnpm build:nexe"
+      }
+    ],
+    [
       "@semantic-release/github",
       {
         "assets": [
-          {
-            "path": "dist/kugoumusic-playlist-exporter-linux-v*.exe",
-            "label": "Linux x64"
-          },
-          {
-            "path": "dist/kugoumusic-playlist-exporter-win-v*.exe",
-            "label": "Windows x64"
-          }
+          "./dist/*"
         ]
       }
     ],
     [
       "@semantic-release/git",
       {
-        "assets": ["package.json", "CHANGELOG.md"],
+        "assets": [
+          "package.json",
+          "CHANGELOG.md"
+        ],
         "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
       }
     ]

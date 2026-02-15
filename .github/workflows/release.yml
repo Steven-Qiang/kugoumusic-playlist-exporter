@@ -28,9 +28,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Build
-        run: pnpm build:nexe
-
       - name: Semantic Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
