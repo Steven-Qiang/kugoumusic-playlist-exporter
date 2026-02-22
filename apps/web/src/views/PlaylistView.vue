@@ -92,6 +92,7 @@
 <script setup lang="ts">
 import type { Playlist, PlaylistData, Song, SongListData } from '@/types';
 import { SwitchButton } from '@element-plus/icons-vue';
+import dayjs from 'dayjs';
 import { useRouter } from 'vue-router';
 import ExportDialog from '@/components/ExportDialog.vue';
 import SongUrlDialog from '@/components/SongUrlDialog.vue';
@@ -175,14 +176,7 @@ function formatDuration(ms: number) {
 }
 
 function formatTime(timestamp: number) {
-  const date = new Date(timestamp * 1000);
-  return date.toLocaleString('zh-CN', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-  });
+  return dayjs(timestamp * 1000).format('YYYY-MM-DD HH:mm');
 }
 
 function handleLogout() {

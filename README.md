@@ -80,7 +80,12 @@ kugou-exporter
 docker pull stevenxuq/kugou-exporter:latest
 
 # 运行容器
-docker run -d -p 3000:3000 -v ./data:/app/data --name kugou-exporter --restart unless-stopped stevenxuq/kugou-exporter:latest
+docker run -d \
+  -p 3000:3000 \
+  -v ./kugou-exporter/data:/app/data \
+  --name kugou-exporter \
+  --restart unless-stopped \
+  stevenxuq/kugou-exporter:latest
 ```
 
 或使用 Docker Compose：

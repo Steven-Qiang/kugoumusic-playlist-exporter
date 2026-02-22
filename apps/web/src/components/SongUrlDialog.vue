@@ -78,8 +78,11 @@
 <script setup lang="ts">
 import type { Song, SongUrl } from '@/types';
 import { ElMessage } from 'element-plus';
+import useClipboard from 'vue-clipboard3';
 import request from '@/utils/request';
 import QualitySelect from './QualitySelect.vue';
+
+const { toClipboard } = useClipboard();
 
 const visible = ref(false);
 const quality = ref('high');
@@ -176,15 +179,13 @@ async function fetchRawJson() {
   }
 }
 
-function copyUrl(url: string) {
-  navigator.clipboard
-    .writeText(url)
-    .then(() => {
-      ElMessage.success('已复制到剪贴板');
-    })
-    .catch(() => {
-      ElMessage.error('复制失败，请手动复制');
-    });
+async function copyUrl(url: string) {
+  try {
+    await toClipboard(url);
+    ElMessage.success('已复制到剪贴板');
+  } catch {
+    ElMessage.error('复制失败，请手动复制');
+  }
 }
 
 function handleClose() {

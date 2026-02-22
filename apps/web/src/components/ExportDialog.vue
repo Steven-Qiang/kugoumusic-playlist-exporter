@@ -115,8 +115,11 @@
 <script setup lang="ts">
 import type { Song, XiaomusicPlaylist, XiaomusicSong } from '@/types';
 import { ElMessage } from 'element-plus';
+import useClipboard from 'vue-clipboard3';
 import request from '@/utils/request';
 import QualitySelect from './QualitySelect.vue';
+
+const { toClipboard } = useClipboard();
 
 const visible = ref(false);
 const configVisible = ref(false);
@@ -248,15 +251,13 @@ function formatDuration(ms: number) {
   return `${m}:${s.toString().padStart(2, '0')}`;
 }
 
-function copyResult() {
-  navigator.clipboard
-    .writeText(exportResult.value)
-    .then(() => {
-      ElMessage.success('已复制到剪贴板');
-    })
-    .catch(() => {
-      ElMessage.error('复制失败，请手动复制');
-    });
+async function copyResult() {
+  try {
+    await toClipboard(exportResult.value);
+    ElMessage.success('已复制到剪贴板');
+  } catch {
+    ElMessage.error('复制失败，请手动复制');
+  }
 }
 
 function downloadResult() {
