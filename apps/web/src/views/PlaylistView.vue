@@ -5,8 +5,8 @@
         <div class="header-content">
           <div class="header-left">
             <h2>我的歌单</h2>
-            <a href="https://github.com/Steven-Qiang/kugoumusic-playlist-exporter" target="_blank" class="github-link">
-              Steven-Qiang/kugoumusic-playlist-exporter@{{ version }}
+            <a href="https://github.com/Steven-Qiang/kugou-exporter" target="_blank" class="github-link">
+              Steven-Qiang/kugou-exporter@{{ version }}
             </a>
           </div>
           <div v-if="userInfo" class="user-info">

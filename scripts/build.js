@@ -10,6 +10,10 @@ const platforms = [
   { platform: 'linux', arch: 'x64', ext: '', name: 'linux' },
 ];
 
+const targetPlatforms = process.argv.includes('--linux-only')
+  ? platforms.filter((p) => p.platform === 'linux')
+  : platforms;
+
 const launcherPath = join(__dirname, '../apps/launcher');
 const distPath = join(__dirname, '../dist');
 
@@ -23,8 +27,8 @@ const distPath = join(__dirname, '../dist');
   console.log('🔨 Building with ncc...');
   execSync('ncc build', { cwd: launcherPath, stdio: 'inherit' });
 
-  for (const target of platforms) {
-    const outputName = `kugoumusic-playlist-exporter-${target.name}-v${version}${target.ext}`;
+  for (const target of targetPlatforms) {
+    const outputName = `kugou-exporter-${target.name}-v${version}${target.ext}`;
     const outputPath = join(distPath, outputName);
 
     console.log(`\n🔨 Building for ${target.platform}-${target.arch}...`);

@@ -1,10 +1,10 @@
 # 酷狗音乐歌单导出工具
 
-[![GitHub stars](https://img.shields.io/github/stars/Steven-Qiang/kugoumusic-playlist-exporter?style=flat-square)](https://github.com/Steven-Qiang/kugoumusic-playlist-exporter/stargazers)
-[![GitHub license](https://img.shields.io/github/license/Steven-Qiang/kugoumusic-playlist-exporter?style=flat-square)](https://github.com/Steven-Qiang/kugoumusic-playlist-exporter/blob/main/LICENSE)
-[![GitHub issues](https://img.shields.io/github/issues/Steven-Qiang/kugoumusic-playlist-exporter?style=flat-square)](https://github.com/Steven-Qiang/kugoumusic-playlist-exporter/issues)
+[![GitHub stars](https://img.shields.io/github/stars/Steven-Qiang/kugou-exporter?style=flat-square)](https://github.com/Steven-Qiang/kugou-exporter/stargazers)
+[![GitHub license](https://img.shields.io/github/license/Steven-Qiang/kugou-exporter?style=flat-square)](https://github.com/Steven-Qiang/kugou-exporter/blob/main/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/Steven-Qiang/kugou-exporter?style=flat-square)](https://github.com/Steven-Qiang/kugou-exporter/issues)
 
-kugoumusic-playlist-exporter
+kugou-exporter
 
 将酷狗音乐歌单导出为通用JSON格式，兼容 xiaomusic（小爱音箱）等播放器
 
@@ -61,18 +61,59 @@ kugoumusic-playlist-exporter
 
 ### 下载安装
 
-从 [Releases](https://github.com/Steven-Qiang/kugoumusic-playlist-exporter/releases) 页面下载对应平台的可执行文件。
+从 [Releases](https://github.com/Steven-Qiang/kugou-exporter/releases) 页面下载对应平台的可执行文件。
 
 ### 运行程序
 
 双击运行下载的可执行文件即可。
 
-![CLI启动界面](images/cli.png)
+![启动界面](images/cli.png)
 
-服务地址：
+服务地址：http://127.0.0.1:3000
 
-- 🌐 API 服务: http://127.0.0.1:3000
-- 🎨 Web 界面: http://127.0.0.1:5173
+### Docker 部署
+
+#### 使用 Docker Hub 镜像（推荐）
+
+```bash
+# 拉取最新镜像
+docker pull stevenxuq/kugou-exporter:latest
+
+# 运行容器
+docker run -d -p 3000:3000 -v ./data:/app/data --name kugou-exporter --restart unless-stopped stevenxuq/kugou-exporter:latest
+```
+
+或使用 Docker Compose：
+
+```yaml
+version: '3.8'
+services:
+  kugou-exporter:
+    image: stevenxuq/kugou-exporter:latest
+    container_name: kugou-exporter
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+```
+
+#### 本地构建镜像
+
+```bash
+# 构建镜像
+docker build -t kugou-exporter .
+
+# 运行容器
+docker run -d -p 3000:3000 -v ./data:/app/data --name kugou-exporter kugou-exporter
+```
+
+服务地址：http://localhost:3000
+
+**注意：**
+
+- 配置文件保存在 `./data/config.yaml`
+- 导出时服务器地址填写：`http://你的主机IP:3000`
 
 ---
 
@@ -128,7 +169,7 @@ kugoumusic-playlist-exporter
 
 ## 开发指南
 
-> 仅适用于开发者，普通用户请直接下载 [Release](https://github.com/Steven-Qiang/kugoumusic-playlist-exporter/releases)
+> 仅适用于开发者，普通用户请直接下载 [Release](https://github.com/Steven-Qiang/kugou-exporter/releases)
 
 ### 环境要求
 

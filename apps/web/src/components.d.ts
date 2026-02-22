@@ -35,7 +35,6 @@ declare module 'vue' {
     QualitySelect: typeof import('./components/QualitySelect.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    SettingsDialog: typeof import('./components/SettingsDialog.vue')['default']
     SongUrlDialog: typeof import('./components/SongUrlDialog.vue')['default']
   }
   export interface GlobalDirectives {

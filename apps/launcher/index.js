@@ -11,15 +11,15 @@ process.removeAllListeners('warning');
 function showBanner() {
   console.log(
     chalk.cyan(
-      '  _  __                                    ____    _                   _   _         _       _____                                 _                 \n | |/ /  _   _    __ _    ___    _   _    |  _ \\  | |   __ _   _   _  | | (_)  ___  | |_    | ____| __  __  _ __     ___    _ __  | |_    ___   _ __ \n | \' /  | | | |  / _` |  / _ \\  | | | |   | |_) | | |  / _` | | | | | | | | | / __| | __|   |  _|   \\ \\/ / | \'_ \\   / _ \\  | \'__| | __|  / _ \\ | \'__|\n | . \\  | |_| | | (_| | | (_) | | |_| |   |  __/  | | | (_| | | |_| | | | | | \\__ \\ | |_    | |___   >  <  | |_) | | (_) | | |    | |_  |  __/ | |   \n |_|\\_\\  \\__,_|  \\__, |  \\___/   \\__,_|   |_|     |_|  \\__,_|  \\__, | |_| |_| |___/  \\__|   |_____| /_/\\_\\ | .__/   \\___/  |_|     \\__|  \\___| |_|   \n                 |___/                                         |___/                                       |_|                                       \n'
+      '  _                                                                             _                 \n | | __  _   _    __ _    ___    _   _      ___  __  __  _ __     ___    _ __  | |_    ___   _ __ \n | |/ / | | | |  / _` |  / _ \\  | | | |    / _ \\ \\ \\/ / | \'_ \\   / _ \\  | \'__| | __|  / _ \\ | \'__|\n |   <  | |_| | | (_| | | (_) | | |_| |   |  __/  >  <  | |_) | | (_) | | |    | |_  |  __/ | |   \n |_|\\_\\  \\__,_|  \\__, |  \\___/   \\__,_|    \\___| /_/\\_\\ | .__/   \\___/  |_|     \\__|  \\___| |_|   \n                 |___/                                  |_|                                       '
     )
   );
   console.log(chalk.gray('━'.repeat(60)));
-  console.log(chalk.yellow(`  🎵 酷狗音乐歌单导出工具 v${version}`));
-  console.log(chalk.gray('  将酷狗音乐歌单导出为通用 JSON 格式，兼容 xiaomusic 等播放器'));
+  console.log(chalk.yellow(`  🎵 酷狗音乐导出工具 v${version}`));
+  console.log(chalk.gray('  支持导出不同格式，兼容XiaoMusic，内置代理服务，实时获取最新播放链接'));
   console.log();
   console.log(chalk.gray('  👤 作者: ') + chalk.white('Steven-Qiang'));
-  console.log(chalk.gray('  🔗 仓库: ') + chalk.blue('github.com/Steven-Qiang/kugoumusic-playlist-exporter'));
+  console.log(chalk.gray('  🔗 仓库: ') + chalk.blue('github.com/Steven-Qiang/kugou-exporter'));
   console.log(chalk.gray('━'.repeat(60)));
   console.log();
 }

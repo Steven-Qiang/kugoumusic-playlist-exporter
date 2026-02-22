@@ -1,11 +1,11 @@
 {
-  "name": "kugoumusic-playlist-exporter",
+  "name": "kugou-exporter",
   "version": "1.0.0",
   "private": true,
   "packageManager": "pnpm@10.29.3",
   "description": "酷狗音乐歌单导出工具",
   "bin": {
-    "kugoumusic-playlist-exporter": "./dist/index.js"
+    "kugou-exporter": "./dist/index.js"
   },
   "scripts": {
     "dev": "pnpm -r dev",

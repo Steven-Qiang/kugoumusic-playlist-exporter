@@ -3,4 +3,4 @@
 
 ### Bug Fixes
 
-* release script ([5504a3e](https://github.com/Steven-Qiang/kugoumusic-playlist-exporter/commit/5504a3e3090c3b885963f9ab9079540bfd4105b3))
+* release script ([5504a3e](https://github.com/Steven-Qiang/kugou-exporter/commit/5504a3e3090c3b885963f9ab9079540bfd4105b3))

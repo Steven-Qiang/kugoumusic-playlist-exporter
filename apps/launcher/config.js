@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const yaml = require('js-yaml');
 
-const configPath = path.join(process.cwd(), 'config.yaml');
+const configPath = process.env.CONFIG_PATH || path.join(process.cwd(), 'config.yaml');
 
 /**
  * @typedef {object} Config

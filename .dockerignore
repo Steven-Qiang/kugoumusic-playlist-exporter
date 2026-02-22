@@ -1,0 +1,15 @@
+node_modules
+dist
+.git
+.github
+*.log
+npm-debug.log*
+.DS_Store
+.env
+.vscode
+.idea
+*.md
+!README.md
+images
+data
+config.yaml

@@ -58,7 +58,7 @@
         </div>
 
         <div class="login-footer">
-          <a href="https://github.com/Steven-Qiang/kugoumusic-playlist-exporter" target="_blank">GitHub</a>
+          <a href="https://github.com/Steven-Qiang/kugou-exporter" target="_blank">GitHub</a>
           <span>@ Steven Qiang</span>
         </div>
       </div>
