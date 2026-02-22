@@ -1,5 +1,4 @@
-# 酷狗音乐歌单导出工具 
-
+# 酷狗音乐歌单导出工具
 
 [![GitHub stars](https://img.shields.io/github/stars/Steven-Qiang/kugoumusic-playlist-exporter?style=flat-square)](https://github.com/Steven-Qiang/kugoumusic-playlist-exporter/stargazers)
 [![GitHub license](https://img.shields.io/github/license/Steven-Qiang/kugoumusic-playlist-exporter?style=flat-square)](https://github.com/Steven-Qiang/kugoumusic-playlist-exporter/blob/main/LICENSE)
@@ -11,7 +10,6 @@ kugoumusic-playlist-exporter
 
 [功能特性](#功能特性) • [快速开始](#快速开始) • [使用说明](#使用说明) • [开发指南](#开发指南)
 
-
 ---
 
 ## 功能特性
@@ -20,25 +18,42 @@ kugoumusic-playlist-exporter
 - 📷 二维码扫码登录
 - 📋 获取用户歌单列表
 - 🔍 查看歌单详情
-- 🎼 支持多列排序（歌名、收藏时间、时长）
 - 🔗 单曲链接获取（支持多音质）
-- 📦 导出为通用 JSON 格式
-- 📊 实时进度显示
-- ⚠️ 失败歌曲记录
+- 🔄 代理获取播放链接，实时获取最新播放链接
+- 📦 导出为 XiaoMusic/JSON/CSV 格式
 
 ### 导出格式
 
+#### XiaoMusic 格式
+
 ```json
-{
-  "name": "歌单名称",
-  "musics": [
-    {
-      "name": "歌名",
-      "url": "http://..."
-    }
-  ]
-}
+[
+  {
+    "name": "歌单名称",
+    "musics": [
+      {
+        "name": "歌名",
+        "url": "http://your-server:3000/proxy/song/url?hash=xxx&quality=high"
+      }
+    ]
+  }
+]
 ```
+
+**代理链接说明：**
+
+- 导出的 URL 为服务代理地址
+- 播放器请求时，服务器实时调用酷狗 API 获取最新音频地址
+- 解决直接链接 2-4 小时过期问题，代理链接永久有效
+- 需要保持服务器运行，支持内网/外网/Docker 部署
+
+#### 原始 JSON 格式
+
+完整的歌曲元数据，包含专辑、歌手、时长等信息，不包含播放链接。
+
+#### CSV 格式
+
+表格格式，包含歌名、歌手、专辑、时长，可用 Excel 打开。
 
 ---
 
@@ -80,20 +95,26 @@ kugoumusic-playlist-exporter
 
 ### 3. 导出歌单
 
-点击「导出歌单」按钮，程序会：
+点击「导出歌单」按钮，选择导出格式：
 
-1. 获取完整歌单（分页加载）
-2. 注册设备获取播放权限
-3. 逐个获取歌曲播放链接
-4. 生成 JSON 文件并自动下载
+![导出方式选择](images/playlist_export_methods.png)
 
-![导出进度](images/playlist_export_in_progress.png)
+- **XiaoMusic 格式**：配置服务器地址和音质，生成包含代理链接的 JSON 文件
+- **原始 JSON**：直接导出歌曲元数据，不包含播放链接
+- **CSV 格式**：导出为表格文件，可用 Excel 打开
 
-![导出完成](images/playlist_export_done.png)
+![导出 XiaoMusic 格式](images/playlist_export_xiaomusic.png)
 
 ### 4. 查看单曲链接
 
-点击歌曲列表中的「获取链接」按钮，可查看该歌曲的所有可用链接（不同音质），并支持一键复制。
+点击歌曲列表中的「获取链接」按钮，可查看：
+
+- **服务器代理**：永久有效的代理链接
+- **直接链接**：酷狗音乐直接链接（主链接 + 备用链接）
+- **XiaoMusic 格式**：单曲 JSON 格式
+- **原始 JSON**：完整的 API 响应数据
+
+支持选择不同音质，并一键复制。
 
 ### 5. 导入到 xiaomusic
 
@@ -179,7 +200,4 @@ MIT License
 
 ---
 
-
 **如果这个项目对你有帮助，请给个 ⭐️ Star 支持一下！**
-
-

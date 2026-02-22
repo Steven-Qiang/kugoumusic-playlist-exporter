@@ -2,24 +2,31 @@ const fs = require('fs');
 const path = require('path');
 
 const moduleDir = path.join(__dirname, '../node_modules/kugoumusicapi/module');
-const files = fs.readdirSync(moduleDir).filter((f) => f.endsWith('.js')).reverse();
+const files = fs
+  .readdirSync(moduleDir)
+  .filter((f) => f.endsWith('.js'))
+  .reverse();
 
 // Patch main.js
-const imports = files.map((file) => {
-  const name = file.replace('.js', '');
-  return `const ${name}_module = require('./module/${file}');`;
-}).join('\n');
+const imports = files
+  .map((file) => {
+    const name = file.replace('.js', '');
+    return `const ${name}_module = require('./module/${file}');`;
+  })
+  .join('\n');
 
-const objEntries = files.map((file) => {
-  const name = file.replace('.js', '');
-  return `  ${name}: (data = {}) => {
+const objEntries = files
+  .map((file) => {
+    const name = file.replace('.js', '');
+    return `  ${name}: (data = {}) => {
     if (typeof data.cookie === 'string') data.cookie = cookieToJson(data.cookie);
     return ${name}_module({ ...data, cookie: data.cookie ? data.cookie : {} }, (...args) => {
       const { createRequest } = require('./util/request');
       return createRequest(...args);
     });
   }`;
-}).join(',\n');
+  })
+  .join(',\n');
 
 const mainOutput = `const { cookieToJson } = require('./util');
 
@@ -37,16 +44,20 @@ fs.writeFileSync(mainFile, mainOutput, 'utf8');
 console.log('Patched:', mainFile);
 
 // Patch server.js
-const moduleImports = files.map((file) => {
-  const name = file.replace('.js', '');
-  return `const module_${name} = require('./module/${file}');`;
-}).join('\n');
+const moduleImports = files
+  .map((file) => {
+    const name = file.replace('.js', '');
+    return `const module_${name} = require('./module/${file}');`;
+  })
+  .join('\n');
 
-const moduleDefs = files.map((file) => {
-  const name = file.replace('.js', '');
-  const route = `/${name.replace(/_/g, '/')}`;
-  return `  { identifier: '${name}', route: '${route}', module: module_${name} }`;
-}).join(',\n');
+const moduleDefs = files
+  .map((file) => {
+    const name = file.replace('.js', '');
+    const route = `/${name.replace(/_/g, '/')}`;
+    return `  { identifier: '${name}', route: '${route}', module: module_${name} }`;
+  })
+  .join(',\n');
 
 const serverOutput = `const path = require('node:path');
 const express = require('express');

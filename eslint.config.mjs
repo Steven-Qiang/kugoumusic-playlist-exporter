@@ -62,5 +62,5 @@ export default antfu(
       ],
       'prefer-template': 'warn',
     },
-  },
+  }
 );

@@ -58,9 +58,7 @@
         </div>
 
         <div class="login-footer">
-          <a href="https://github.com/Steven-Qiang/kugoumusic-playlist-exporter" target="_blank">
-            GitHub
-          </a>
+          <a href="https://github.com/Steven-Qiang/kugoumusic-playlist-exporter" target="_blank">GitHub</a>
           <span>@ Steven Qiang</span>
         </div>
       </div>
@@ -68,7 +66,12 @@
 
     <el-dialog v-model="showAccountSelect" title="选择账号" width="400px" :close-on-click-modal="false">
       <div class="account-list">
-        <div v-for="account in accountList" :key="account.userid" class="account-item" @click="selectAccount(account.userid)">
+        <div
+          v-for="account in accountList"
+          :key="account.userid"
+          class="account-item"
+          @click="selectAccount(account.userid)"
+        >
           <el-avatar :src="replaceImageSize(account.pic, 100)" :size="50" />
           <div class="account-info">
             <div class="account-name">
@@ -116,7 +119,7 @@ watch(activeTab, (newTab) => {
 
 const phoneForm = reactive({
   phone: '',
-  code: ''
+  code: '',
 });
 
 const accountList = ref<any[]>([]);
@@ -148,7 +151,7 @@ async function handlePhoneLogin() {
   loading.value = true;
   try {
     const res = await request.get('/login/cellphone', {
-      params: { mobile: phoneForm.phone, code: phoneForm.code }
+      params: { mobile: phoneForm.phone, code: phoneForm.code },
     });
     if (res.status === 1) {
       ElMessage.success('登录成功');
@@ -171,7 +174,7 @@ async function selectAccount(userid: number) {
   loading.value = true;
   try {
     await request.get('/login/cellphone', {
-      params: { mobile: phoneForm.phone, code: phoneForm.code, userid }
+      params: { mobile: phoneForm.phone, code: phoneForm.code, userid },
     });
     ElMessage.success('登录成功');
     router.push('/playlist');
@@ -186,11 +189,11 @@ async function generateQR() {
   loading.value = true;
   try {
     const keyRes = await request.get<QRKeyData>('/login/qr/key', {
-      params: { timestamp: Date.now() }
+      params: { timestamp: Date.now() },
     });
     qrKey.value = keyRes.data.qrcode;
     const qrRes = await request.get<QRCreateData>('/login/qr/create', {
-      params: { key: qrKey.value, qrimg: true, timestamp: Date.now() }
+      params: { key: qrKey.value, qrimg: true, timestamp: Date.now() },
     });
     qrCode.value = qrRes.data.base64;
     checkQRStatus();
@@ -206,7 +209,7 @@ async function checkQRStatus() {
   qrTimer = setInterval(async () => {
     try {
       const res = await request.get<QRCheckData>('/login/qr/check', {
-        params: { key: qrKey.value, timestamp: Date.now() }
+        params: { key: qrKey.value, timestamp: Date.now() },
       });
       if (res.data.status === 4) {
         clearInterval(qrTimer!);
@@ -235,7 +238,7 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-.login-page {
+  .login-page {
   min-height: 100vh;
   display: flex;
   justify-content: center;

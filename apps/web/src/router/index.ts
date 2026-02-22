@@ -13,19 +13,19 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/playlist'
+      redirect: '/playlist',
     },
     {
       path: '/login',
       name: 'Login',
-      component: () => import('@/views/LoginView.vue')
+      component: () => import('@/views/LoginView.vue'),
     },
     {
       path: '/playlist',
       name: 'Playlist',
-      component: () => import('@/views/PlaylistView.vue')
-    }
-  ]
+      component: () => import('@/views/PlaylistView.vue'),
+    },
+  ],
 });
 
 router.beforeEach(async (to, from, next) => {
