@@ -1,3 +1,11 @@
+# [1.1.0](https://github.com/Steven-Qiang/kugou-exporter/compare/v1.0.0...v1.1.0) (2026-02-22)
+
+
+### Features
+
+* 使用服务器代理替代临时直链 ([189cff3](https://github.com/Steven-Qiang/kugou-exporter/commit/189cff379bbf5033d02d2f3b4325774595168e8d))
+* 新增docker支持 ([5e35652](https://github.com/Steven-Qiang/kugou-exporter/commit/5e35652a82d6b4d7968f0da5b7a51d3195fa927f))
+
 # 1.0.0 (2026-02-15)
 
 
