@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/Steven-Qiang/kugou-exporter/compare/v1.1.0...v1.1.1) (2026-02-22)
+
+
+### Bug Fixes
+
+* 修复剪切板复制失败 ([8e1fb95](https://github.com/Steven-Qiang/kugou-exporter/commit/8e1fb95bdacc4580ab5b09639fc9c47101a3596d))
+
 # [1.1.0](https://github.com/Steven-Qiang/kugou-exporter/compare/v1.0.0...v1.1.0) (2026-02-22)
 
 
